@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Author: {{ author.last_name }}, {{author.first_name}}</h1>
+
+  <p>{{author.date_of_birth}}</p>
+  
+  
+
+  <div style="margin-left:20px;margin-top:20px">
+    <a href="{{request.path}}/update/">UPDATE AUTHOR</a>
+    <h4>Books</h4>
+
+    {% for copy in author.book_set.all %}
+      <hr>
+     
+      <p><a href="{{ copy.get_absolute_url }}"><strong>{{copy.title}} ({{copy.bookinstance_set.count}})</strong></a></p>
+     <p>{{copy.summary}}-------{{ copy.get_absolute_url }}</p>
+     
+    {% endfor %}
+   
+  </div>
+{% endblock %}
