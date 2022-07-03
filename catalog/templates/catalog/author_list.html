@@ -1,12 +1,12 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Author List</h1>
+  <h1 class="accent mb-4 mt-2">Author List</h1>
   {% if author_list %}
-  <ul>
+  <ul class="list-group ">
     {% for author in author_list %}
-      <li>
-        <a href ="{{author.get_absolute_url}}">{{ author.last_name }},{{author.first_name}}</a> ( {{author.date_of_birth}} )<!--edited link-->
+      <li class="list-group-item list-color">
+        <a class ="dark" href ="{{author.get_absolute_url}}">{{ author.last_name }},{{author.first_name}}</a> ( {{author.date_of_birth}} )<!--edited link-->
        <!--<a href ="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
    --> 
       </li>

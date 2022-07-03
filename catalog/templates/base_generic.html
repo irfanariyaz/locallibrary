@@ -10,10 +10,82 @@
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-  <div class="container-fluid">
+    <!-- NAVIGATION -->
+<div class="container-fluid" style="background-color: #f3c7a4;">
+  <nav class=" navbar-light  navigation">
+      <div class="navbar-nav" style="flex-direction:row;justify-content: space-around;">
+          <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+          <a class="nav-link" href="{% url 'books' %}">Books</a>
+          <a class="nav-link" href="{% url 'authors' %}">Authors</a>
+        </div>
+ 
+  </nav>
+</div>
+    <!-- sidebar -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-2 " > 
+
+          {% block sidebar %}
+      <div class="list-group ">
+      <a href="{% url 'index' %}" class="list-group-item list-group-item-action list-border" >Home  </a>
+      <a href= "{% url 'books' %}"class="list-group-item list-group-item-action list-border">All books</a>
+      <a href= "{% url 'authors' %}" class="list-group-item list-group-item-action list-border">All authors</a>
+      <a href="{% url 'my-borrowed' %}"class="list-group-item list-group-item-action list-border">My Borrowed</a>
+      </div>
+      {% if user.is_authenticated %}
+      <hr>
+      User:<strong class="accent"> {{user.get_username|upper}}</strong>
+       
+      <a href="{% url 'logout' %}?next={{request.path}}" class="list-group-item list-group-item-action list-border">Logout</a>
+      {% else %}
+        <li><a class="list-group-item list-group-item-action list-border"href="{% url 'login' %}?next={{request.path}}">Login</a></li>
+   
+      {% endif %}
+  
+      <hr>
+      {% if user.is_staff %}
+      <p>Staff</p>
+      <a href="{% url 'all-borrowed'%}"class="list-group-item list-group-item-action list-border">All borrowed books</a>
+     
+     <hr>
+    
+     <li><a href="{% url 'book-create' %}"class="list-group-item list-group-item-action list-border">Create new book</a> </li>
+     <li><a href="{% url 'author-create' %}"class="list-group-item list-group-item-action list-border">Create new author</a> </li>
+  
+     {% endif %}
+    
+    
+  {% endblock sidebar %}    
+       </div>  <!--sidebar ends here -->
+   
+  <div class="col-sm-10 ">{% block content %}{% endblock %}
+    {% block pagination %}
+            {% if is_paginated %}
+          <div class="pagination">
+              <span class="page-links">
+                  {% if page_obj.has_previous %}
+                      <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                  {% endif %}
+                  <span class="page-current">
+                      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                  </span>
+                  {% if page_obj.has_next %}
+                      <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                  {% endif %}
+              </span>
+          </div>
+            {% endif %}
+          {% endblock %}
+  </div>
+        </div>
+        </div>
+     
+  
+  <!-- <div class="container-fluid">
     <div class="row">
       <div class="col-sm-2">
-      {% block sidebar %}
+      
         <ul class="sidebar-nav">
           <li><a href="{% url 'index' %}">Home</a></li>
           <li><a href="{% url 'books' %}">All books</a></li>
@@ -43,28 +115,33 @@
         {% endif %}
         </ul>
        
-     {% endblock %}
-      </div>
-      <div class="col-sm-10 ">{% block content %}{% endblock %}
-        {% block pagination %}
-    {% if is_paginated %}
-        <div class="pagination">
-            <span class="page-links">
-                {% if page_obj.has_previous %}
-                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
-                {% endif %}
-                <span class="page-current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                </span>
-                {% if page_obj.has_next %}
-                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
-                {% endif %}
-            </span>
-        </div>
-    {% endif %}
-  {% endblock %}
+    
+      </div>-->
+    <!--   <div class="container "> 
+        <div class="col-sm-10 "> -->
+          <!-- 
+            {% if is_paginated %}
+          <div class="pagination">
+              <span class="page-links">
+                  {% if page_obj.has_previous %}
+                      <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                  {% endif %}
+                  <span class="page-current">
+                      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                  </span>
+                  {% if page_obj.has_next %}
+                      <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                  {% endif %}
+              </span>
+          </div>
+            {% endif %}
+          
+         </div>
       </div>
     </div>
-  </div>
+  </div> -->
+  
+
+
 </body>
 </html>

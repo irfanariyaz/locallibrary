@@ -1,18 +1,18 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Title: {{ book.title }}</h1>
+  <h1 class="accent mb-5">Title: {{ book.title|upper }}</h1>
 
-  <p><strong>Author:</strong> <a href="{{book.author.get_absolute_url}}">{{ book.author }}</a></p> <!-- author detail link not yet defined -->
-  <p><strong>Summary:</strong> {{ book.summary }}</p>
-  <p><strong>ISBN:</strong> {{ book.isbn }}</p>
-  <p><strong>Language:</strong> {{ book.language }}</p>
-  <p><strong>Genre:</strong> {{ book.genre.all|join:", " }}</p>
+  <p class="bb"><strong>Author:</strong> <a href="{{book.author.get_absolute_url}}">{{ book.author }}</a></p> <!-- author detail link not yet defined -->
+  <p class="bb"><strong>Summary:</strong> {{ book.summary }}</p>
+  <p class="bb"><strong>ISBN:</strong> {{ book.isbn }}</p>
+  <p class="bb"><strong>Language:</strong> {{ book.language }}</p>
+  <p class="bb"><strong>Genre:</strong> {{ book.genre.all|join:", " }}</p>
   <!-- <form action="/catalog/book/{{book.pk}}/update/ " method="post">
     {% csrf_token %}
   <input type="submit" value="Update">
   </form> -->
-  <a href="{{request.path}}/update/">UPDATE</a>
+  <button class="btn btn-primary dark"style="background-color:#f3c7a4;border:none;"><a  class="dark "href="{{request.path}}/update/">UPDATE</a></button>
 
   <div style="margin-left:20px;margin-top:20px">
     <h4>Copies</h4>
