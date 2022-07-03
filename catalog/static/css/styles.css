@@ -1,5 +1,87 @@
+@font-face {
+    font-family: 'Action';
+    src: url(./fonts/Moonstone-2OyZK.otf);
+}
+@font-face {
+    font-family: "Amatic";
+    src: url(./fonts/AestheticMidnight-WyLvv.otf) ;
+    font-weight: bold;
+    font-style: normal;
+}
+.accent{
+  color: #90645e;
+}
+.dark{
+    color: #3a2f38;
+}
+.list-color{
+    background:#f3c7a4 ;
+}
+.bb{
+    border-bottom: 1px solid #f3c7a4;
+}
+body {
+    background-image: linear-gradient(to left, #fae0dc, #f8edeb,#f9e5d8,#f9dcc4 );
+}
+li{
+    list-style: none;
+    
+}
+a:hover {
+    opacity: .5;
+    text-decoration: none;
+}
+.list-border{
+    border: 1px solid #f3c7a4;
+}
+.row{
+    margin-top:10px;
+}
+
+.navigation{
+    width:800px;
+    padding: 10px;
+    margin: 0 auto;
+    
+    
+}
+.nav-list{
+    display: flex;
+    justify-content: space-between;
+}
+
 .sidebar-nav {
     margin-top: 20px;
     padding: 0;
     list-style: none;
+}
+ 
+.flex{
+    display: flex;
+}
+.hero-image{
+    width: 50%;
+    height: 200px;
+    -webkit-box-shadow: 10px 10px 13px 1px rgba(179,168,179,1);
+}
+.hero{
+    padding: 2em;
+    
+    align-items: center;
+}
+.hero-title {
+  padding: 10px;
+  font-size: 2rem;
+ 
+ 
+}
+.hero-title h1{
+    font-family: 'Amatic';
+    color: #90645e;
+    
+}
+
+.hero-title p{
+    font-family:'Action';
+    font-size: 1 em;
 }

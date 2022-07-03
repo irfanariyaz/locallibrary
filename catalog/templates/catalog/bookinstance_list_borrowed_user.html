@@ -1,11 +1,10 @@
 {% extends "base_generic.html" %}
 {% block content %}
-    <h1>Borrowed books</h1>
+    <h1 class="accent mb-4 mt-2">Borrowed books</h1>
     {% if bookinstance_list %}
-    <ul>
+    <ul class="list-group">
         {% for bookinst in bookinstance_list %}
-        <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
-        <a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a> ({{ bookinst.due_back }})
+        <li class="list-group-item list-color {% if bookinst.is_overdue %}text-danger{% else %} text-success{% endif %}">        <a  class =" dark"href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a> ({{ bookinst.due_back }})
         </li>   
         {% endfor %}
     </ul>

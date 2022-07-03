@@ -39,6 +39,7 @@ def index(request):
     #         a.append(book.title)
     HarryP_books=','.join(a.title for a in entry_list)
     #b = ','.join(book.title for book in Book.objects.all())
+  
     context={
         'num_books':num_books,
         'num_instances':num_instances,
@@ -56,7 +57,7 @@ def index(request):
 
 class BookListView(generic.ListView):
     model = Book
-    paginate_by = 5
+    paginate_by = 10
 
 class BookDetailView(generic.DetailView):
     model = Book  
